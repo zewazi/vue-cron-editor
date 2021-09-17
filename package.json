@@ -9,6 +9,16 @@
     "postinstall": "link-parent-bin -c src",
     "release:samples": "vue-cli-service build && gh-pages -d dist"
   },
+  "type": "module",
+  "entry": "./main.ts",
+  "exports": "./dist/index.js",
+  "files": [
+    "src",
+    "*.md"
+  ],
+  "engines": {
+    "node": ">=15"
+  },
   "dependencies": {
     "buefy": "^0.8.20",
     "core-js": "^3.9.1",
@@ -28,6 +38,7 @@
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.33",
     "eslint": "^5.16.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^5.0.0",
     "fast-check": "^2.14.0",
@@ -50,6 +61,46 @@
   "lint-staged": {
     "**/*.{ts,js,vue}": [
       "vue-cli-service lint"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/prettier",
+      "@vue/typescript"
+    ],
+    "rules": {
+      "vue/no-unused-components": "warn",
+      "node/no-unsupported-features/es-syntax": [
+        "error",
+        {
+          "ignores": [
+            "dynamicImport",
+            "modules"
+          ]
+        }
+      ],
+      "unicorn/prefer-node-protocol": "off"
+    },
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser",
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
     ]
   }
 }
