@@ -1,7 +1,10 @@
 {
-  "name": "vue-cron-editor",
+  "name": "@zewazi/vue-cron-editor",
   "version": "0.1.0",
-  "private": true,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
